@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135678588133499172}
   - component: {fileID: 23915016991863952}
   m_Layer: 0
-  m_Name: Glass_inverted
+  m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
