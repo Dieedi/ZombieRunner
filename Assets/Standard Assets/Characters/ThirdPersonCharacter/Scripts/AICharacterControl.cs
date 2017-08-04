@@ -25,8 +25,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (target != null)
-                agent.SetDestination(target.position);
+            if (target != null) {
+                print ("target acquired"); 
+                agent.SetDestination (target.position);
+            }
 
             if (agent.remainingDistance > agent.stoppingDistance) {
                 if (agent.remainingDistance < 10) {
