@@ -1496,9 +1496,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8debf33aac2976a45b92564d163ac3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips:
+  moanSounds:
   - {fileID: 8300000, guid: e5a227ba25f67194789cfccd17e7e391, type: 3}
   - {fileID: 8300000, guid: 7e254ff57c29d754bb209a1a719d65bb, type: 3}
+  m_StepInterval: 7
+  m_FootstepSounds:
+  - {fileID: 8300000, guid: c0322611aea43494280805671db68077, type: 3}
+  - {fileID: 8300000, guid: 46231e6e22d8bea4bb9160ea32518bc2, type: 3}
+  m_LandSound: {fileID: 0}
 --- !u!136 &136426465641149644
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2380,7 +2385,7 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.8
+  m_Speed: 1
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 120

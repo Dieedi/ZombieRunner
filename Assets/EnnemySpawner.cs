@@ -23,10 +23,11 @@ public class EnnemySpawner : MonoBehaviour {
 	}
 
     void OnTriggerExit (Collider collider) {
-        print ("collision Exit");
-        Ennemy = Instantiate (ZombiePrefab, transform.position, Quaternion.identity, Ennemies.transform) as GameObject;
-        Ennemy.GetComponent<AICharacterControl> ().target = Player.transform;
-        StartCoroutine ("ActivateMeshAgent");
+        if (collider.name == "Player") {
+            Ennemy = Instantiate (ZombiePrefab, transform.position, Quaternion.identity, Ennemies.transform) as GameObject;
+            Ennemy.GetComponent<AICharacterControl> ().target = Player.transform;
+            StartCoroutine ("ActivateMeshAgent");
+        }
     }
 
     IEnumerator ActivateMeshAgent () {

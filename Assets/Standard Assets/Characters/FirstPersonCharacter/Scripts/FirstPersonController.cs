@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -42,6 +44,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        // Add falling parameters
+        public float oldPosition;
+        public bool isFalling;
+        public bool respawn; // TODO : multiple respawn, respawn on nearest point ... or not
+
+        private GameObject[] SpawnPoints;
+
         // Use this for initialization
         private void Start()
         {
@@ -54,13 +63,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle/2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-			m_MouseLook.Init(transform , m_Camera.transform);
+            m_MouseLook.Init(transform , m_Camera.transform);
+
+            // Add falling parameters
+            SpawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
         }
 
 
         // Update is called once per frame
         private void Update()
         {
+            if (respawn) {
+                Respawn ();
+            }
+
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -108,9 +124,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_MoveDir.x = desiredMove.x*speed;
             m_MoveDir.z = desiredMove.z*speed;
 
-
             if (m_CharacterController.isGrounded)
             {
+                if (isFalling && oldPosition - transform.position.y >= 30) {
+                    // TODO play sound ?
+                    Respawn ();
+                }
+
                 m_MoveDir.y = -m_StickToGroundForce;
 
                 if (m_Jump)
@@ -120,9 +140,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     m_Jump = false;
                     m_Jumping = true;
                 }
+                isFalling = false;
             }
             else
             {
+                // Not grounded !
+                if (!isFalling) {
+                    oldPosition = transform.position.y;
+                    isFalling = true;
+                }
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
             m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
@@ -145,6 +171,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (m_CharacterController.velocity.sqrMagnitude > 0 && (m_Input.x != 0 || m_Input.y != 0))
             {
+                print (m_CharacterController.velocity.magnitude);
                 m_StepCycle += (m_CharacterController.velocity.magnitude + (speed*(m_IsWalking ? 1f : m_RunstepLenghten)))*
                              Time.fixedDeltaTime;
             }
@@ -254,6 +281,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        private void Respawn () {
+            int spawnNumber = Mathf.Abs (Random.Range (0, 3));
+            transform.position = SpawnPoints [spawnNumber].transform.position;
+            respawn = false;
         }
     }
 }
