@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Respawn ();
+        
 	}
 	
 	// Update is called once per frame

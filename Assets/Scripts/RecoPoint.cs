@@ -20,10 +20,6 @@ public class RecoPoint : MonoBehaviour {
     private bool heliDone = false;
     private Player player;
 
-    void OnGUI() {
-        op = (OPTIONS)EditorGUILayout.EnumPopup ("test:", op);
-    }
-
 	// Use this for initialization
 	void Start () {
         player = FindObjectOfType<Player> ();
@@ -40,7 +36,6 @@ public class RecoPoint : MonoBehaviour {
                 // TODO Play heli voice
                 Debug.Log ("All reco done !");
             }
-            print (player.recoDone);
 
             recoTimeCount += Time.deltaTime;
 
@@ -52,21 +47,18 @@ public class RecoPoint : MonoBehaviour {
                     if (heliDone == false) {
                         heliDone = true;
                         player.recoDone++;
-                        print ("heli reco"); 
                     }
                     break;
                 case OPTIONS.oasis:
                     if (oasisDone == false) {
                         oasisDone = true;
                         player.recoDone++;
-                        print ("oasis reco"); 
                     }
                     break;
                 case OPTIONS.pyramid:
                     if (pyramidDone == false) {
                         pyramidDone = true;
                         player.recoDone++;
-                        print ("pyra reco"); 
                     }
                     break;
                 }

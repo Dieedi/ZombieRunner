@@ -15,7 +15,7 @@ public class FlareSticks : MonoBehaviour {
     private GameObject Ground;
     private bool haveFlare = false;
     private Text Count;
-    private float flareLightDuration = 0;
+    private float flareLightDuration = 0;  // TODO : Move Flare timer on flare prefab
 
 	// Use this for initialization
 	void Start () {
