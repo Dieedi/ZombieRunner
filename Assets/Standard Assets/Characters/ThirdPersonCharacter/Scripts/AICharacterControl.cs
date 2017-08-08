@@ -10,6 +10,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;                                    // target to aim for
+        public float distanceStopMove = 200;
+        public float minDistanceWalk = 30;
+        public float minDistanceRun = 10;
 
 
         private void Start()
@@ -31,11 +34,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             if (agent.remainingDistance > agent.stoppingDistance) {
                 // don't move till player is near
-                if (agent.remainingDistance > 100) {
+                if (agent.remainingDistance > distanceStopMove) {
                     agent.speed = 0f;
-                }else if (agent.remainingDistance < 10) {
+                }else if (agent.remainingDistance < minDistanceRun) {
                     agent.speed = 2;
-                } else if (agent.remainingDistance > 30) {
+                } else if (agent.remainingDistance > minDistanceWalk) {
                     agent.speed = 0.8f;
                 }
 

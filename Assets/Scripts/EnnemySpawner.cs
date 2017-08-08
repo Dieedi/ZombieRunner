@@ -25,6 +25,7 @@ public class EnnemySpawner : MonoBehaviour {
     void OnTriggerExit (Collider collider) {
         if (collider.name == "Player") {
             Ennemy = Instantiate (ZombiePrefab, transform.position, Quaternion.identity, Ennemies.transform) as GameObject;
+            Ennemy.GetComponent<Rigidbody> ().isKinematic = false;
             Ennemy.GetComponent<AICharacterControl> ().target = Player.transform;
             StartCoroutine ("ActivateMeshAgent");
         }
@@ -32,8 +33,9 @@ public class EnnemySpawner : MonoBehaviour {
 
     IEnumerator ActivateMeshAgent () {
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         Ennemy.GetComponent<NavMeshAgent> ().enabled = true;
+        Ennemy.GetComponent<Rigidbody> ().isKinematic = true;
     }
 }
