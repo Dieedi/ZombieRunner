@@ -26,12 +26,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             if (target != null) {
-                print ("target acquired"); 
                 agent.SetDestination (target.position);
             }
 
             if (agent.remainingDistance > agent.stoppingDistance) {
-                if (agent.remainingDistance < 10) {
+                // don't move till player is near
+                if (agent.remainingDistance > 100) {
+                    agent.speed = 0f;
+                }else if (agent.remainingDistance < 10) {
                     agent.speed = 2;
                 } else if (agent.remainingDistance > 30) {
                     agent.speed = 0.8f;
