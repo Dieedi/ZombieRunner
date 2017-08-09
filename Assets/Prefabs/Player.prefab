@@ -363,7 +363,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.36
   m_Range: 20
-  m_SpotAngle: 66
+  m_SpotAngle: 90
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -382,7 +382,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 40
   m_FalloffTable:
     m_Table[0]: 0
     m_Table[1]: 0
@@ -409,13 +409,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493325414598580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d223d8beade85840aab6da52aaba953, type: 3}
+  m_Script: {fileID: 11500000, guid: da1697d6c9e7a624bab4c492d4a51416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flareStickAvailable: 10
-  flareStickMaxDuration: 30
-  FlareStickPrefab: {fileID: 1758829729213382, guid: 56cebbbabc8827e49a287ee58b68f94f,
-    type: 2}
+  Player: {fileID: 1455918904907014}
 --- !u!114 &114199200046513894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -509,7 +506,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdc22bdeb6522f4f85aeec223ede8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FlareStickPrefab: {fileID: 1758829729213382, guid: 56cebbbabc8827e49a287ee58b68f94f,
+    type: 2}
+  FlareCounter: {fileID: 1493325414598580}
   recoDone: 0
+  flareStickAvailable: 10
+  flareStickMaxDuration: 30
 --- !u!114 &114468411309005810
 MonoBehaviour:
   m_ObjectHideFlags: 1

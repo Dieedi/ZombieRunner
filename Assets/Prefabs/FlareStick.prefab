@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 54050439351144454}
   - component: {fileID: 64499940507934800}
   - component: {fileID: 82797097181557036}
+  - component: {fileID: 114324500733770976}
   m_Layer: 0
   m_Name: FlareStick
   m_TagString: Untagged
@@ -383,6 +384,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114324500733770976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758829729213382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f0e04a16596184e81c0b3197d3dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flareStickMaxDuration: 30
+  Player: {fileID: 1455918904907014, guid: d4e22be7d5ab47e4e8671df59aadf19d, type: 2}
 --- !u!198 &198000873422513750
 ParticleSystem:
   m_ObjectHideFlags: 1
